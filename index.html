@@ -35,6 +35,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 5px;
         }
 
         button:hover {
@@ -90,53 +91,54 @@
             }
         }
     </script>
-</div>
 
-<script>
-    function convertToLetter() {
-        var inputText = document.getElementById("inputText").value.trim();
-        var morseAlphabet = {
-            ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E",
-            "..-.": "F", "--.": "G", "....": "H", "..": "I", ".---": "J",
-            "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O",
-            ".--.": "P", "--.-": "Q", ".-.": "R", "...": "S", "-": "T",
-            "..-": "U", "...-": "V", ".--": "W", "-..-": "X", "-.--": "Y",
-            "--..": "Z"
-        };
+    <script>
+        function convertToLetter() {
+            var inputText = document.getElementById("inputText").value.trim();
+            var morseAlphabet = {
+                ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E",
+                "..-.": "F", "--.": "G", "....": "H", "..": "I", ".---": "J",
+                "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O",
+                ".--.": "P", "--.-": "Q", ".-.": "R", "...": "S", "-": "T",
+                "..-": "U", "...-": "V", ".--": "W", "-..-": "X", "-.--": "Y",
+                "--..": "Z"
+            };
 
-        if (/^[.\s-]+$/.test(inputText)) {
-            var morseWords = inputText.split("   ");
-            var result = morseWords.map(function (word) {
-                var morseLetters = word.split(" ");
-                var letters = morseLetters.map(function (letter) {
-                    return morseAlphabet[letter];
+            if (/^[.\s-]+$/.test(inputText)) {
+                var morseWords = inputText.split("   ");
+                var result = morseWords.map(function (word) {
+                    var morseLetters = word.split(" ");
+                    var letters = morseLetters.map(function (letter) {
+                        return morseAlphabet[letter];
+                    });
+                    return letters.join("");
                 });
-                return letters.join("");
-            });
-            var finalResult = result.join(" ");
-            alert("Converted text: " + finalResult);
-        } else {
-            alert("Invalid input. Please enter Morse code using dots, dashes, and spaces.");
+                var finalResult = result.join(" ");
+                alert("Converted text: " + finalResult);
+            } else {
+                alert("Invalid input. Please enter Morse code using dots, dashes, and spaces.");
+            }
         }
+
         function addDot() {
-        document.getElementById("inputText").value += ".";
-    }
+            document.getElementById("inputText").value += ".";
+        }
 
-    function addDash() {
-        document.getElementById("inputText").value += "-";
-    }
+        function addDash() {
+            document.getElementById("inputText").value += "-";
+        }
 
-    function addSpace() {
-        document.getElementById("inputText").value += " ";
-    }
+        function addSpace() {
+            document.getElementById("inputText").value += " ";
+        }
 
-    function removeLast() {
-        var currentText = document.getElementById("inputText").value;
-        document.getElementById("inputText").value = currentText.slice(0, -1);
-    }
-    }
-</script>
+        function removeLast() {
+            var currentText = document.getElementById("inputText").value;
+            document.getElementById("inputText").value = currentText.slice(0, -1);
+        }
+    </script>
+
+</div>
 
 </body>
 </html>
-
