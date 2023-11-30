@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Converter</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00FFFF, #800080);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Morse Code Converter</h1>
+    <input type="text" id="inputText" placeholder="Enter text in Morse code">
+    <br>
+    <button onclick="convertToLetter()">Convert</button>
+</div>
+
+<script>
+    function convertToLetter() {
+        var inputText = document.getElementById("inputText").value.trim();
+        var morseAlphabet = {
+            ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E",
+            "..-.": "F", "--.": "G", "....": "H", "..": "I", ".---": "J",
+            "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O",
+            ".--.": "P", "--.-": "Q", ".-.": "R", "...": "S", "-": "T",
+            "..-": "U", "...-": "V", ".--": "W", "-..-": "X", "-.--": "Y",
+            "--..": "Z"
+        };
+
+        if (/^[.\s-]+$/.test(inputText)) {
+            var morseWords = inputText.split("   ");
+            var result = morseWords.map(function (word) {
+                var morseLetters = word.split(" ");
+                var letters = morseLetters.map(function (letter) {
+                    return morseAlphabet[letter];
+                });
+                return letters.join("");
+            });
+            var finalResult = result.join(" ");
+            alert("Converted text: " + finalResult);
+        } else {
+            alert("Invalid input. Please enter Morse code using dots, dashes, and spaces.");
+        }
+    }
+</script>
+
+</body>
+</html>
